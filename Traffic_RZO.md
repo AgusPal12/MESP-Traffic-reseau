@@ -21,7 +21,7 @@ PC perso
 
 ## Voici une capture d’écran du VM1
 
-![alt text](Captures d'écran/IPs.jpg)
+![alt text](<Captures d'écran/IPs.jpg>)
 
 Concernant la classe de l'adresse IPv4, elle est de classe "C" car se trouve dans une environment VMWare.
 
@@ -53,10 +53,10 @@ En appliquant un filtre TCP on peut voir plusieurs, voici des captures d'écrin 
   tcp.flags.syn == 1 && tcp.flags.ack == 1
   ```
 
-![alt text](Captures d'écran/TCP_SYN.png)
-![alt text](Captures d'écran/TCP_ACK.png)
-![alt text](Captures d'écran/SYN_sans_ACK-Debut de Handshake.png)
-![alt text](Captures d'écran/SYN_plus_ACK-réponse de Handshake.png)
+![alt text](<Captures d'écran/TCP_SYN.png>)
+![alt text](<Captures d'écran/TCP_ACK.png>)
+![alt text](<Captures d'écran/SYN_sans_ACK-Debut de Handshake.png>)
+![alt text](<Captures d'écran/SYN_plus_ACK-réponse de Handshake.png>)
 
 ---
 
@@ -64,7 +64,7 @@ En appliquant un filtre TCP on peut voir plusieurs, voici des captures d'écrin 
 
 En cmd `ipconfig /release` -> `ipconfig /renew` dans le PC perso pendant la capture WS :
 
-![alt text](Captures d'écran/DORA.png)
+![alt text](<Captures d'écran/DORA.png>)
 
 ## 2. qu’est ce que le `DHCP Starvation` / `snooping` ? `Rogue DHCP` ?
 
@@ -120,8 +120,9 @@ Voici une requête DNS en cmd et son résultat dans WS :
 
 - Avec le filtre `dns` sur Wireshark apres avoir fait par exemple un `nslookup simplonline.co` en cmd
 - Avant pour être sur que la requête va apparaître sur WS j'ai fait un `ipconfig /flushdns``pour vider le cache.
-  ![alt text](Captures d'écran/nslookup_simplonline.png)
-  ![alt text](Captures d'écran/DNS.png)
+- 
+  ![alt text](<Captures d'écran/nslookup_simplonline.png>)
+  ![alt text](<Captures d'écran/DNS.png>)
 
 ## 6. Qu’est-ce que le `DNS Spoofing` ? Comment s’en protéger ?
 
@@ -208,8 +209,8 @@ Certains serveurs DNS forcent TCP pour éviter les amplifications DDoS via UDP.
 
 Flux `http` depuis l'interface **lo (loopback)** dans la machine serveur qui héberge Vulnerablelightapp :
 
-![alt text](Captures d'écran/Traffic_http.png)
-![alt text](Captures d'écran/http_stream.png)
+![alt text](<Captures d'écran/Traffic_http.png>)
+![alt text](<Captures d'écran/http_stream.png>)
 
 ## 10. Qu’est-ce que le `HTTP Smuggling` ? Donner un exemple de `CVE`
 
@@ -284,11 +285,11 @@ C’est l’ensemble de mécanismes, personnes et procédures permettant d’ém
 
 **Modification du login et mdp avec Swagger :**
 
-![alt text](Captures d'écran/Swagger_VLA.png)
+![alt text](<Captures d'écran/Swagger_VLA.png>)
 
 **MDP en clair dans le flux HTTP**
 
-![alt text](Captures d'écran/MDP_VLA.png)
+![alt text](<Captures d'écran/MDP_VLA.png>)
 
 ## 14. Comment mettre en place la `confidentialité` pour ce service ?
 
@@ -372,7 +373,7 @@ C’est l’ensemble de mécanismes, personnes et procédures permettant d’ém
 
 Voici une capture du handshake avec Wireshark quand on rentre dans https://localhost:3000 dans la VM où Vulnerablelightsapp est en execution :
 filtre = `tls.handshake`
-![alt text](Captures d'écran/tls-handshake.png)
+![alt text](<Captures d'écran/tls-handshake.png>)
 
 ## 16. Qu’est-ce qu’une autorité de certification (`AC`) racine ?
 
@@ -437,7 +438,7 @@ R3 est une AC intermédiaire utilisée par Let’s Encrypt, signée par ISRG Roo
 
 Voici la chaîne de confiance du site :
 
-![alt text](Captures d'écran/Chaine de confiance.png)
+![alt text](<Captures d'écran/Chaine de confiance.png>)
 
 - Certificat du site : taisen.fr
 - AC Intermédiaire : R12
@@ -450,7 +451,7 @@ Filtres:
 
 - kerberos
 
-![alt text](Captures d'écran/CaptureKERBEROS.png)
+![alt text](<Captures d'écran/CaptureKERBEROS.png>)
 
 ## AS-REQ et AS-REP : Le Processus d'Authentification Initial
 
@@ -461,20 +462,20 @@ AS-REQ (Authentication Service Request) et AS-REP (Authentication Service Respon
   La demande faite par le client (utilisateur) au KDC. Le client envoie son nom d'utilisateur (Principal) et un horodatage chiffré avec son mot de passe (ou hash).
 
   AS-REQ	10	kerberos.msg_type == 10
-  ![alt text](Captures d'écran/kerberos type 10.png)
+  ![alt text](<Captures d'écran/kerberos type 10.png>)
 - AS-REP (Response) KDC → Client
 
   La réponse du KDC. S'il valide l'utilisateur, le KDC envoie deux choses : 1) Une clé de session chiffrée avec le hash du mot de passe de l'utilisateur. 2) Un TGT (Ticket-Granting Ticket) chiffré avec la clé secrète du KDC.
 
   AS-REP	11	kerberos.msg_type == 11
-  ![alt text](Captures d'écran/kerberos type 11.png)
+  ![alt text](<Captures d'écran/kerberos type 11.png>)
 
 En résumé, cet échange permet au client d'obtenir le TGT, qui est l'équivalent d'un passeport pour le domaine. Le client utilisera ensuite ce TGT dans l'échange suivant (TGS-REQ/TGS-REP) pour demander des tickets spécifiques pour accéder aux services réseau (comme les lecteurs réseau SMB).
 
 ## 20. Capturer une `authentification RDP` (mettre en place le service si nécessaire), quel est le protocole d'authentification capturé ?
 
-![alt text](Captures d'écran/Capture_RDP1.png)
-![alt text](Captures d'écran/Capture_RDP2.png)
+![alt text](<Captures d'écran/Capture_RDP1.png>)
+![alt text](<Captures d'écran/Capture_RDP2.png>)
 
 ### Protocole RDP (Remote Desktop Protocol)
 
@@ -520,7 +521,7 @@ WinRM (Windows Remote Management) utilise par défaut HTTP(S) avec une authentif
 
 **Voici l'authentification WinRM avec kerberos capturé par Wireshark :**
 
-![alt text](Captures d'écran/Authentification_WinRM.png)
+![alt text](<Captures d'écran/Authentification_WinRM.png>)
 
 ## 23.  Capturer une `authentification SSH` ou SFTP (mettre en place le service si nécessaire)
 
@@ -532,7 +533,7 @@ Le trafic SSH est entièrement chiffré dès le début de la connexion. Avec Wir
 - des paquets avec le flag [PSH, ACK]
 - Le client et le serveur s'envoient leur version SSH en texte clair
 
-![alt text](Captures d'écran/SSH-versions.png)
+![alt text](<Captures d'écran/SSH-versions.png>)
 
 **L'échange de clés (Key Exchange)**
 
@@ -540,7 +541,7 @@ Le trafic SSH est entièrement chiffré dès le début de la connexion. Avec Wir
 - Dans SSH Protocol → SSH Message Type: Key Exchange Init (20)
 - algorithmes proposés
 
-![alt text](Captures d'écran/SSH-Keys.png)
+![alt text](<Captures d'écran/SSH-Keys.png>)
 
 **Les données chiffrées**
 
@@ -556,16 +557,16 @@ Je ne peu pas voir :
 
 Envoi d'un fichier avec le partage entre Windows Client et Windows Serveur:
 
-![alt text](Captures d'écran/transfert_fichier_smb.png)
+![alt text](<Captures d'écran/transfert_fichier_smb.png>)
 
 Filtre Wireshark pour la capture:
  tcp.port == 445 ou tcp.port == 139
 
-![alt text](Captures d'écran/Wireshark_smb.png)
+![alt text](<Captures d'écran/Wireshark_smb.png>)
 
 SMB2 sans chiffrement : j'ai pu extraire le text du  fichier facilement "Exemple du text" dans Data :
 
-![alt text](Captures d'écran/Contenu_fichier_smb.png)
+![alt text](<Captures d'écran/Contenu_fichier_smb.png>)
 
 ## 25.  Comment proteger l'`authenticité` et la `confidentialité` d'un partage SMB ?
 
